@@ -1,0 +1,44 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+    <title>Код программы л.р. №7</title>
+</head>
+    
+<body>
+      
+    <p>#include <unistd.h>
+#include <getopt.h>
+#include <stdlib.h>
+#include <stdio.h>
+
+void writefile(char* author, char* filename) {
+	char* c = "#include <unistd.h>%c#include <getopt.h>%c#include <stdlib.h>%c#include <stdio.h>%c%cvoid writefile(char* author, char* filename) {%c%cchar* c = %c%s%c;%c%cFILE* file;%c%cfile = fopen(filename, %cw%c);%c%cfprintf(file, c, 10, 10, 10, 10, 10, 10, 9, 34, c, 34, 10, 9, 10, 9, 34, 34, 10, 9, 10, 9, 10, 10, 10, 10, 9, 10, 9, 34, 34, 34, 34, 10, 10, 9, 34, 37, 92, 92, 92, 92, 37, 92, 34, 10, 10, 9, 34, 34, 10, 9, 9, 10, 9, 9, 34, 37, 92, 92, 92, 34, 10, 9, 9, 34, 37, 92, 92, 92, 34, 10, 9, 9, 34, 37, 92, 92, 92, 34, 10, 9, 9, 34, 37, 92, 37, 92, 92, 34, 10, 9, 9, 34, 37, 92, 37, 92, 92, 34, 10, 9, 9, 10, 9, 10, 9, 34, 34, 10, 9, 9, 10, 9, 10, 9, 10, 10, 10, author);%c%cfclose(file);%c}%c%cint main(int argc, char** argv) {%c%cint opt;%c%cchar* program = argv[0], * filename = %c%c, * author = %c%c;%c%c%cif (argc == 1) { printf(%c[%cs] %c033[0;31mНе было использованно ни одного ключа!%c033[0;0m%cnПример ввода:%cn%cs -a -b -c -d file.c -e ФИО%cn%c, program, program); return 0; }%c%c%cwhile ((opt = getopt(argc, argv, %cabcd:e:%c)) != -1) {%c%c%cswitch (opt) {%c%c%ccase 'a': printf(%c[%cs] %c033[0;32mЗадан ключ -a!%c033[0;0m%cn%c, program); break;%c%c%ccase 'b': printf(%c[%cs] %c033[0;32mЗадан ключ -b!%c033[0;0m%cn%c, program); break;%c%c%ccase 'c': printf(%c[%cs] %c033[0;32mЗадан ключ -c!%c033[0;0m%cn%c, program); break;%c%c%ccase 'd': printf(%c[%cs] %c033[0;32mЗадан ключ -d с аргументом %cs!%c033[0;0m%cn%c, program, optarg); filename = optarg; break;%c%c%ccase 'e': printf(%c[%cs] %c033[0;32mЗадан ключ -e с аргументом %cs!%c033[0;0m%cn%c, program, optarg); author = optarg; break;%c%c%c}%c%c}%c%cif (filename != %c%c) {%c%c%cwritefile(author, filename);%c%c}%c%creturn 0;%c}%c%c%s";
+	FILE* file;
+	file = fopen(filename, "w");
+	fprintf(file, c, 10, 10, 10, 10, 10, 10, 9, 34, c, 34, 10, 9, 10, 9, 34, 34, 10, 9, 10, 9, 10, 10, 10, 10, 9, 10, 9, 34, 34, 34, 34, 10, 10, 9, 34, 37, 92, 92, 92, 92, 37, 92, 34, 10, 10, 9, 34, 34, 10, 9, 9, 10, 9, 9, 34, 37, 92, 92, 92, 34, 10, 9, 9, 34, 37, 92, 92, 92, 34, 10, 9, 9, 34, 37, 92, 92, 92, 34, 10, 9, 9, 34, 37, 92, 37, 92, 92, 34, 10, 9, 9, 34, 37, 92, 37, 92, 92, 34, 10, 9, 9, 10, 9, 10, 9, 34, 34, 10, 9, 9, 10, 9, 10, 9, 10, 10, 10, author);
+	fclose(file);
+}
+
+int main(int argc, char** argv) {
+	int opt;
+	char* program = argv[0], * filename = "", * author = "";
+
+	if (argc == 1) { printf("[%s] \033[0;31mНе было использованно ни одного ключа!\033[0;0m\nПример ввода:\n%s -a -b -c -d file.c -e ФИО\n", program, program); return 0; }
+
+	while ((opt = getopt(argc, argv, "abcd:e:")) != -1) {
+		switch (opt) {
+		case 'a': printf("[%s] \033[0;32mЗадан ключ -a!\033[0;0m\n", program); break;
+		case 'b': printf("[%s] \033[0;32mЗадан ключ -b!\033[0;0m\n", program); break;
+		case 'c': printf("[%s] \033[0;32mЗадан ключ -c!\033[0;0m\n", program); break;
+		case 'd': printf("[%s] \033[0;32mЗадан ключ -d с аргументом %s!\033[0;0m\n", program, optarg); filename = optarg; break;
+		case 'e': printf("[%s] \033[0;32mЗадан ключ -e с аргументом %s!\033[0;0m\n", program, optarg); author = optarg; break;
+		}
+	}
+	if (filename != "") {
+		writefile(author, filename);
+	}
+	return 0;
+}</p>
+
+</body>
+</html>
